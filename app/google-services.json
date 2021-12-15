@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "312009905567",
+    "project_id": "fornax-wallet",
+    "storage_bucket": "fornax-wallet.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:312009905567:android:97f33419d1e0b2c11a19aa",
+        "android_client_info": {
+          "package_name": "com.hercules.fornax.wallet"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "312009905567-iuh00e26fc0h8gtpefh2ucmg8falh2u6.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBeBWbo3jlMqafykzaKyhtvM_cJWfXQXNU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "312009905567-iuh00e26fc0h8gtpefh2ucmg8falh2u6.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

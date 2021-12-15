@@ -1,0 +1,44 @@
+package com.fornaxwallet.app.entity;
+
+import android.text.TextUtils;
+
+import org.bouncycastle.pqc.math.linearalgebra.CharUtils;
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class CoinGeckoTicker {
+    public final String address;
+    public final double usdPrice;
+    public final double usdChange;
+
+    public CoinGeckoTicker(String address, double usdPrice, double usdChange) {
+        this.address = address;
+        this.usdChange = usdChange;
+        this.usdPrice = usdPrice;
+    }
+
+    public static List<CoinGeckoTicker> buildTickerList(String jsonData, String currencyIsoSymbol) throws JSONException {
+        List<CoinGeckoTicker> res = new ArrayList<>();
+        JSONObject data = new JSONObject(jsonData);
+        if (data.names() == null) return res;
+
+        for (int i = 0; i < data.names().length(); i++) {
+            String address = data.names().get(i).toString();
+            JSONObject obj = data.getJSONObject(address);
+            if (obj.has(currencyIsoSymbol.toLowerCase())) {
+                String usdChangeStr = obj.getString(currencyIsoSymbol.toLowerCase() + "_24h_change");
+                double usdChange = 0.0;
+                if (!TextUtils.isEmpty(usdChangeStr) && Character.isDigit(usdChangeStr.charAt(0)))
+                    usdChange = obj.getDouble(currencyIsoSymbol.toLowerCase() + "_24h_change");
+                CoinGeckoTicker ticker = new CoinGeckoTicker(address, obj.getDouble(currencyIsoSymbol.toLowerCase()), usdChange);
+                res.add(ticker);
+            }
+        }
+
+        return res;
+    }
+}
